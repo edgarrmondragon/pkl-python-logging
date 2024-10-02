@@ -1,0 +1,9 @@
+module org.python.Logging.tests
+
+amends "pkl:test"
+
+examples {
+  ["snippet"] {
+    import("../examples/snippet.pkl").output.text
+  }
+}

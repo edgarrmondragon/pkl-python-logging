@@ -1,0 +1,24 @@
+examples {
+  ["snippet"] {
+    """
+    version = 1
+    disable_existing_loggers = false
+    formatters {
+      ["simple"] = Map("format", "%(levelname)-8s - %(message)s", "datefmt", null, "style", null, "defaults", null, "class", null)
+    }
+    filters = null
+    handlers {
+      ["stdout"] = Map("class", "logging.StreamHandler", "level", "INFO", "formatter", "simple", "filters", null, "stream", "ext://sys.stdout")
+      ["stderr"] = Map("class", "logging.StreamHandler", "level", "ERROR", "formatter", "simple", "filters", null, "stream", "ext://sys.stderr")
+      ["file"] = Map("class", "logging.FileHandler", "level", null, "formatter", "simple", "filters", null, "filename", "app.log", "mode", "w")
+    }
+    root {
+      level = "DEBUG"
+      filters = null
+      handlers = List("stderr", "stdout", "file")
+    }
+    incremental = null
+    
+    """
+  }
+}

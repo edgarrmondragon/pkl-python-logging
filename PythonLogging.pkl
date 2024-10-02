@@ -1,0 +1,51 @@
+module org.python.Logging
+
+// Formatters
+class Formatter {
+    format: String?
+    datefmt: String?
+    style: String?
+    defaults: Mapping<String, Any>?
+    `class`: String?
+    kwargs: Mapping<String(this != "class", this != "format", this != "datefmt", this != "style", this != "defaults"), Any> // constrain keys to prevent overlap with predefined properties
+}
+
+// Filters
+typealias Filters = Mapping<String, Mapping<String, Any>>
+
+// Handlers
+class Handler {
+    `class`: String
+    level: String?
+    formatter: String?
+    filters: List<String>?
+    kwargs: Mapping<String(this != "class", this != "level", this != "formatter", this != "filters"), Any> // constrain keys to prevent overlap with predefined properties
+}
+
+// Loggers
+open class BaseLogger {
+    level: String?
+    filters: List<String>?
+    handlers: List<String>?
+}
+
+class Logger extends BaseLogger {
+    propagate: Boolean?
+}
+
+version: UInt8 = 1
+disable_existing_loggers: Boolean?
+formatters: Mapping<String, Formatter>?
+filters: Filters?
+handlers: Mapping<String, Handler>?
+root: BaseLogger?
+incremental: Boolean?
+
+output {
+  renderer {
+    converters {
+        [Formatter] = (it) -> it.toMap().remove("kwargs") + it.kwargs.toMap() // merge types properties and kwargs
+        [Handler] = (it) -> it.toMap().remove("kwargs") + it.kwargs.toMap() // merge types properties and kwargs
+    }
+  }
+}

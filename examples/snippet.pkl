@@ -1,0 +1,42 @@
+amends "../PythonLogging.pkl"
+
+disable_existing_loggers = false
+formatters = new Mapping {
+    ["simple"] = new Formatter {
+        format = "%(levelname)-8s - %(message)s"
+    }
+}
+handlers = new Mapping {
+    ["stdout"] = new Handler {
+        `class` = "logging.StreamHandler"
+        level = "INFO"
+        formatter = "simple"
+        kwargs = new Mapping {
+            ["stream"] = "ext://sys.stdout"
+        }
+    }
+    ["stderr"] = new Handler {
+        `class` = "logging.StreamHandler"
+        level = "ERROR"
+        formatter = "simple"
+        kwargs = new Mapping {
+            ["stream"] = "ext://sys.stderr"
+        }
+    }
+    ["file"] = new Handler {
+        `class` = "logging.FileHandler"
+        formatter = "simple"
+        kwargs = new Mapping {
+            ["filename"] = "app.log"
+            ["mode"] = "w"
+        }
+    }
+}
+root = new BaseLogger {
+    level = "DEBUG"
+    handlers = List(
+        "stderr",
+        "stdout",
+        "file"
+    )
+}

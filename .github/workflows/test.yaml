@@ -1,0 +1,16 @@
+name: Test
+on:
+  pull_request: {}
+  push:
+    branches:
+    - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pkl-community/setup-pkl@v0
+      with:
+        pkl-version: 0.26.3
+    - run: pkl test tests/PythonLogging.pkl
