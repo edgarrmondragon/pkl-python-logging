@@ -1,5 +1,7 @@
 # pkl-python-logging
 
+⚠️ Still in alpha. Open an issue if you'd like to help! ⚠️
+
 A [Pkl](https://pkl-lang.org/) template for writing [Python logging configurations](https://docs.python.org/3/library/logging.config.html#dictionary-schema-details).
 
 ## Prerequisites
