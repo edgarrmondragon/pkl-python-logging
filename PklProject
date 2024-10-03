@@ -1,0 +1,25 @@
+amends "pkl:Project"
+
+package {
+  name = "org.python.logging"
+  baseUri = "package://pkg.pkl-lang.org/github.com/edgarrmondragon/pkl-python-logging"
+  version = "0.0.1-alpha.2"
+  packageZipUrl = "https://github.com/edgarrmondragon/pkl-python-logging/archive/refs/tags/\(version).zip"
+  description = "A Pkl template for writing Python logging configurations."
+  authors {
+    "Edgar Ramírez-Mondragón <edgarrmondragon@hey.com>"
+  }
+  website = "https://github.com/edgarrmondragon/pkl-python-logging"
+  sourceCode = "https://github.com/edgarrmondragon/pkl-python-logging"
+  license = "Apache-2.0"
+  issueTracker = "https://github.com/edgarrmondragon/pkl-python-logging/issues"
+  apiTests = import*("tests/**.pkl").keys.toListing()
+  exclude {
+    "LICENSE"
+    "README.md"
+    "examples/**"
+    "tests/**"
+  }
+}
+
+tests = import*("tests/**.pkl").keys.toListing()
